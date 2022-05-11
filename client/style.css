@@ -39,6 +39,11 @@
      color: #fff;
    }
 
+   #messages {
+     display: flex;
+     flex-direction: column;
+     padding: 10px;
+   }
 
 
    .message {
@@ -49,15 +54,13 @@
      border-radius: 10px;
      box-sizing: border-box;
      clear: both;
-     display: flex;
-     flex-direction: column;
-     padding: 10px;
    }
 
    .left {
      background: rgb(150, 225, 255);
-    margin-right: 10vw;
+     margin-right: 10vw;
    }
+
    .right {
      background: rgb(210, 255, 150);
      align-self: flex-end;
@@ -91,6 +94,6 @@
    .message-author {
      color: rgb(0, 0, 0);
 
-        padding-top: 5px;
-        font-size: 0.7rem;
+     padding-top: 5px;
+     font-size: 0.7rem;
    }
