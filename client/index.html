@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="authorForm">
+<form id="startForm">
+  <div id="nameForm">
+    <label class="form-label" for="name">Name</label>
+    <input type="text" name="Name" id="name" required placeholder="Enter Your Name!" minlength="2" maxlength="20" />
+  </div>
+  <button class="menuBtn" type="submit">Start!</button>
+</form>
+</div>
+  <div id="messages">
+  </div>
+  <form id="form" action="">
+    <input id="input" autocomplete="off" /><button>Send</button>
+  </form>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
