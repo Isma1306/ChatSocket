@@ -17,14 +17,20 @@ app.use(express.json());
 
 
 io.on('connection', async (socket) => {
+  let userName;
   socket.on('status', async (msg) => {
+    userName = msg.authorid;
     message.getMessages(io, msg);
   });
 
   socket.on('chat message', async (msg) => {
-message.postMessage(io, msg)
+    message.postMessage(io, msg);
+  });
+  socket.on('disconnect', function () {
+    message.postMessage(io, { authorid: 'server', content: `${userName} has left the chat`, timestamp: Date.now()});
   });
 });
+
 
 
 

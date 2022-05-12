@@ -23,7 +23,7 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 (async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync();
 
 })();
 

@@ -47,8 +47,9 @@
 
 
    .message {
+    box-shadow: 5px 5px 5px lightblue;
      max-width: 60%;
-     color: rgb(102, 102, 102);
+     color: rgb(32, 32, 32);
      margin-bottom: 10px;
      padding: 8px;
      border-radius: 10px;
@@ -71,9 +72,14 @@
    }
 
    .message-time {
-     color: rgb(150, 150, 150);
+     color: rgb(53, 53, 53);
      padding-top: 5px;
      font-size: 0.7rem;
+   }
+
+   .left .message-time {
+     text-align: right;
+     float: right;
    }
 
    .right .message-text {
@@ -81,7 +87,7 @@
    }
 
    .right .message-time {
-     text-align: right;
+     text-align: left;
      float: right;
    }
 

@@ -1,6 +1,8 @@
 'use strict';
 
 
+const colorMap = {};
+
 class Message {
   constructor (content, authorid, timestamp) {
     this.content = content;
@@ -35,9 +37,11 @@ socket.on('status', function (msg) {
 const startChat = function (user) {
   socket.on('chat message', function (msg) {
     const { authorid, content, timestamp } = msg;
+    const color = chooseColor(msg.authorid)
     const time = Number(timestamp)
     const $HtmlMsg = $(`
-    <div class="message ${authorid === user ? 'right' : 'left'}">
+    <div style="background-color:${color}"
+ class="message ${authorid === user ? 'right' : 'left'}">
     <div class="message-author">${authorid}</div>
       <div class="message-text">${content}</div>
       <div class="message-time">${prettifyDate(time)}</div>
@@ -81,4 +85,21 @@ function prettifyDate (timestamp) {
   // Returns the date in hh:mm am/pm format
   const options = { hour: '2-digit', minute: '2-digit' };
   return new Date(timestamp).toLocaleTimeString('en-US', options);
+}
+
+function randomColor () {
+    const randomInt = (min, max) => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+      var h = randomInt(0, 36) * 10;
+      var s = 70;
+      var l = 70;
+      return `hsl(${h},${s}%,${l}%)`;
+}
+
+const chooseColor = function (authorid) {
+  if (!colorMap[authorid]) {
+    colorMap[authorid] = randomColor();
+  }
+  return colorMap[authorid];
 }
