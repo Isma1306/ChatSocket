@@ -2,9 +2,9 @@
 
 
 class Message {
-  constructor (content, authorId, timestamp) {
+  constructor (content, authorid, timestamp) {
     this.content = content;
-    this.authorId = authorId;
+    this.authorid = authorid;
     this.timestamp = timestamp;
   }
 }
@@ -19,12 +19,12 @@ const input = document.getElementById('input');
 
 
 socket.on('status', function (msg) {
-  const { authorId, content, timestamp } = msg;
+  const { authorid, content, timestamp } = msg;
   const $HtmlMsg = $(`
     <div class="message">
-    <div class="message-author">${authorId}</div>
+    <div class="message-author">${authorid}</div>
       <div class="message-text">${content}</div>
-      <div class="message-time">${timestamp}</div>
+      <div class="message-time">${prettifyDate(timestamp)}</div>
     </div>
   `);
   $('#messages').append($HtmlMsg);
@@ -34,22 +34,24 @@ socket.on('status', function (msg) {
 
 const startChat = function (user) {
   socket.on('chat message', function (msg) {
-    const { authorId, content, timestamp } = msg;
+    const { authorid, content, timestamp } = msg;
+    const time = Number(timestamp)
     const $HtmlMsg = $(`
-    <div class="message ${authorId === user ? 'right' : 'left'}">
-    <div class="message-author">${authorId}</div>
+    <div class="message ${authorid === user ? 'right' : 'left'}">
+    <div class="message-author">${authorid}</div>
       <div class="message-text">${content}</div>
-      <div class="message-time">${timestamp}</div>
+      <div class="message-time">${prettifyDate(time)}</div>
     </div>
   `);
     $('#messages').append($HtmlMsg);
 
     window.scrollTo(0, document.body.scrollHeight);
   });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (input.value) {
-      const message = new Message(input.value, user, prettifyDate(Date.now()));
+      const message = new Message(input.value, user, Date.now());
       socket.emit('chat message', message);
       input.value = '';
     }
@@ -67,7 +69,7 @@ $('#startForm').on('submit', function (event) {
   const user = $('#startForm').find('#name').val();
   $('#authorForm').hide(200);
   startChat(user);
-  const message = new Message(`${user} got connected`, user, prettifyDate(Date.now()));
+  const message = new Message(`${user} got connected`, user, Date.now());
   socket.emit('status', message);
 });
 
