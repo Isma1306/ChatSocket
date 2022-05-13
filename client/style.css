@@ -1,11 +1,84 @@
+   @font-face {
+     font-family: "rabbit";
+     src: url("./whitrabt.woff");
+   }
+
+   .messages-container::-webkit-scrollbar {
+     display: none;
+     /* Safari and Chrome */
+
+   }
+
+
+
+
    body {
      margin: 0;
      padding-bottom: 3rem;
-     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+     font-family: "rabbit";
+   }
+
+   .background {
+     background: linear-gradient(-45deg, #0a4d26, #03311c, #096c1c, #15e144);
+     background-size: 400% 400%;
+     animation: Gradient 9s ease infinite;
+     top: 0px;
+     width: 100%;
+     height: fit-content;
+     min-height: 100vh;
+     z-index: 0;
+   }
+
+   #authorForm {
+     z-index: 3;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     height: fit-content;
+     transform: translate(-50%, -50%);
+     color: #15e144;
+     background-color: black;
+     border: 5px solid rgb(145, 145, 145);
+     border-bottom-color: #333;
+     border-right-color: #333;
+     padding: 50px;
+   }
+
+
+   #startForm {
+     border: none;
+     font-family: 'rabbit';
+     display: flex;
+     flex-direction: row;
+   }
+
+   .menuBtn {
+     color: #15e144;
+     border: none;
+     font-family: 'rabbit';
+     font-size: 16px;
+     background-color: black;
+   }
+
+   #name,
+   #input {
+     background-color: black;
+   }
+
+   input[type="text"] {
+     border: none;
+     color: #15e144;
+     font-family: 'rabbit';
+     font-size: 16px;
+   }
+
+   .form-label {
+     color: #15e144;
+     font-size: 16px;
    }
 
    #form {
-     background: rgba(0, 0, 0, 0.15);
+     background: rgb(0, 0, 0);
      padding: 0.25rem;
      position: fixed;
      bottom: 0;
@@ -17,12 +90,31 @@
      backdrop-filter: blur(10px);
    }
 
+   #form .menuBtn {
+     float: right;
+   }
+
    #input {
+
      border: none;
      padding: 0 1rem;
      flex-grow: 1;
      border-radius: 2rem;
-     margin: 0.25rem;
+
+
+   }
+
+   #nameForm #input {
+     width: 70%;
+   }
+
+
+
+   #nameForm {
+     width: 100%;
+     min-width: 230px;
+     padding-right: 20px;
+     padding-left: 20px;
    }
 
    #input:focus {
@@ -40,6 +132,8 @@
    }
 
    #messages {
+    scrollbar-width: none;
+      /* Firefox */
      display: flex;
      flex-direction: column;
      padding: 10px;
@@ -47,27 +141,32 @@
 
 
    .message {
-    box-shadow: 5px 5px 5px lightblue;
-     max-width: 60%;
+     width: fit-content;
+     overflow: hidden;
+     border: 5px solid rgb(0, 0, 0);
+     border-bottom-color: #333;
+     border-right-color: #333;
+     max-width: 70%;
      color: rgb(32, 32, 32);
-     margin-bottom: 10px;
+     margin-bottom: 20px;
      padding: 8px;
-     border-radius: 10px;
-     box-sizing: border-box;
+     border-radius: 2px;
      clear: both;
+
+
    }
 
    .left {
-     background: rgb(150, 225, 255);
-     margin-right: 10vw;
+     animation: animate-left .3s linear;
+     margin-right: 10%;
    }
 
    .right {
-     background: rgb(210, 255, 150);
+     animation: animate-right .3s linear;
      align-self: flex-end;
      display: flex;
      flex-direction: column;
-     margin-left: 10vw;
+     margin-left: 10%;
 
    }
 
@@ -102,4 +201,44 @@
 
      padding-top: 5px;
      font-size: 0.7rem;
+   }
+
+   /* animation for the background */
+   @keyframes Gradient {
+     0% {
+       background-position: 0% 50%;
+     }
+
+     50% {
+       background-position: 100% 50%;
+     }
+
+     100% {
+       background-position: 0% 50%;
+     }
+   }
+
+   /* append message animation */
+   @keyframes animate-left {
+     from {
+       transform: translateX(-100%);
+       opacity: 0;
+     }
+
+     to {
+       transform: translateX(0%);
+       opacity: 1;
+     }
+   }
+
+   @keyframes animate-right {
+     from {
+       transform: translateX(100%);
+       opacity: 0;
+     }
+
+     to {
+       transform: translateX(0%);
+       opacity: 1;
+     }
    }

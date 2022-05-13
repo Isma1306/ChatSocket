@@ -11,20 +11,30 @@
 </head>
 
 <body>
+<div class="background">
 <div id="authorForm">
+  <h1>Hello Mr. Anderson... </h1>
+  <h2>...I don't remember your name, please, write it here</h2>
 <form id="startForm">
   <div id="nameForm">
-    <label class="form-label" for="name">Name</label>
+    <label class="form-label" for="name">>.</label>
     <input type="text" name="Name" id="name" required placeholder="Enter Your Name!" minlength="2" maxlength="20" />
   </div>
-  <button class="menuBtn" type="submit">Start!</button>
+  <button class="menuBtn" type="submit">Enter...</button>
 </form>
 </div>
   <div id="messages">
+
   </div>
+
   <form id="form" action="">
-    <input id="input" autocomplete="off" /><button>Send</button>
+    <div id="nameForm">
+    <label class="form-label" for="input">>.</label>
+    <input id="input" autocomplete="off" type="text" /><button class="menuBtn">Send</button>
+    </div>
   </form>
+
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
   <script src="script.js"></script>
 </body>

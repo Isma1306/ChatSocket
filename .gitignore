@@ -26,6 +26,6 @@ node_modules
 .node_repl_history
 
 # Custom
-test.js
+.env
 private
 dist
